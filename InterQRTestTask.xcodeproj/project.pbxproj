@@ -9,19 +9,30 @@
 /* Begin PBXBuildFile section */
 		8034393B29A6565000358706 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8034393A29A6565000358706 /* AppDelegate.swift */; };
 		8034393D29A6565000358706 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8034393C29A6565000358706 /* SceneDelegate.swift */; };
-		8034393F29A6565000358706 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8034393E29A6565000358706 /* ViewController.swift */; };
+		8034393F29A6565000358706 /* DoorsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8034393E29A6565000358706 /* DoorsVC.swift */; };
 		8034394429A6565100358706 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8034394329A6565100358706 /* Assets.xcassets */; };
 		8034394729A6565100358706 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8034394529A6565100358706 /* LaunchScreen.storyboard */; };
+		8034395229A659B900358706 /* Door.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8034395129A659B900358706 /* Door.swift */; };
+		8034395629A65B5E00358706 /* DoorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8034395529A65B5E00358706 /* DoorCell.swift */; };
+		8034395929A65C0C00358706 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8034395829A65C0C00358706 /* SnapKit */; };
+		8034395E29A65F2100358706 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8034395D29A65F2100358706 /* APIService.swift */; };
+		8034396029A664E700358706 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8034395F29A664E700358706 /* UIView+Ext.swift */; };
+		8034396429A66C2700358706 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8034396329A66C2700358706 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		8034393729A6565000358706 /* InterQRTestTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InterQRTestTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8034393A29A6565000358706 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8034393C29A6565000358706 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		8034393E29A6565000358706 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8034393E29A6565000358706 /* DoorsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoorsVC.swift; sourceTree = "<group>"; };
 		8034394329A6565100358706 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8034394629A6565100358706 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8034394829A6565100358706 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8034395129A659B900358706 /* Door.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Door.swift; sourceTree = "<group>"; };
+		8034395529A65B5E00358706 /* DoorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoorCell.swift; sourceTree = "<group>"; };
+		8034395D29A65F2100358706 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		8034395F29A664E700358706 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
+		8034396329A66C2700358706 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8034395929A65C0C00358706 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,14 +66,75 @@
 		8034393929A6565000358706 /* InterQRTestTask */ = {
 			isa = PBXGroup;
 			children = (
+				8034396229A665DF00358706 /* Utilities */,
+				8034396129A665D500358706 /* Extensions */,
+				8034395329A65B4100358706 /* CustomViews */,
+				8034395029A658E200358706 /* Services */,
+				8034394F29A658D900358706 /* Models */,
+				8034394E29A658D000358706 /* Screens */,
 				8034393A29A6565000358706 /* AppDelegate.swift */,
 				8034393C29A6565000358706 /* SceneDelegate.swift */,
-				8034393E29A6565000358706 /* ViewController.swift */,
 				8034394329A6565100358706 /* Assets.xcassets */,
 				8034394529A6565100358706 /* LaunchScreen.storyboard */,
 				8034394829A6565100358706 /* Info.plist */,
 			);
 			path = InterQRTestTask;
+			sourceTree = "<group>";
+		};
+		8034394E29A658D000358706 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				8034393E29A6565000358706 /* DoorsVC.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		8034394F29A658D900358706 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8034395129A659B900358706 /* Door.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8034395029A658E200358706 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				8034395D29A65F2100358706 /* APIService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		8034395329A65B4100358706 /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				8034395429A65B4A00358706 /* Cells */,
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		8034395429A65B4A00358706 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				8034395529A65B5E00358706 /* DoorCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		8034396129A665D500358706 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8034395F29A664E700358706 /* UIView+Ext.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8034396229A665DF00358706 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				8034396329A66C2700358706 /* Constants.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -80,6 +153,9 @@
 			dependencies = (
 			);
 			name = InterQRTestTask;
+			packageProductDependencies = (
+				8034395829A65C0C00358706 /* SnapKit */,
+			);
 			productName = InterQRTestTask;
 			productReference = 8034393729A6565000358706 /* InterQRTestTask.app */;
 			productType = "com.apple.product-type.application";
@@ -108,6 +184,9 @@
 				Base,
 			);
 			mainGroup = 8034392E29A6565000358706;
+			packageReferences = (
+				8034395729A65C0C00358706 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 8034393829A6565000358706 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -134,9 +213,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8034393F29A6565000358706 /* ViewController.swift in Sources */,
+				8034396029A664E700358706 /* UIView+Ext.swift in Sources */,
+				8034395629A65B5E00358706 /* DoorCell.swift in Sources */,
+				8034395E29A65F2100358706 /* APIService.swift in Sources */,
+				8034393F29A6565000358706 /* DoorsVC.swift in Sources */,
+				8034395229A659B900358706 /* Door.swift in Sources */,
 				8034393B29A6565000358706 /* AppDelegate.swift in Sources */,
 				8034393D29A6565000358706 /* SceneDelegate.swift in Sources */,
+				8034396429A66C2700358706 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,8 +364,9 @@
 				INFOPLIST_FILE = InterQRTestTask/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -289,9 +374,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.interqrtesttask.InterQRTestTask;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -307,8 +395,9 @@
 				INFOPLIST_FILE = InterQRTestTask/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -316,9 +405,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.interqrtesttask.InterQRTestTask;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -344,6 +436,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8034395729A65C0C00358706 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8034395829A65C0C00358706 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8034395729A65C0C00358706 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8034392F29A6565000358706 /* Project object */;
 }
