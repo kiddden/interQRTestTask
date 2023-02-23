@@ -45,14 +45,14 @@ class DoorCell: UICollectionViewCell {
     private let nameLabel: UILabel = {
         var view = UILabel()
         view.textColor = Colors.doorName
-        view.font = UIFont.boldSystemFont(ofSize: 16)
+        view.font = UIFont(name: "Sk-Modernist-Bold", size: 16)
         
         return view
     }()
     private let locationLabel: UILabel = {
         var view = UILabel()
         view.textColor = Colors.doorLocation
-        view.font = UIFont.systemFont(ofSize: 14)
+        view.font = UIFont(name: "Sk-Modernist", size: 14)
         
         return view
     }()
@@ -60,7 +60,7 @@ class DoorCell: UICollectionViewCell {
     let statusLabel: UILabel = {
         var view = UILabel()
         view.textColor = Colors.doorStatusLocked
-        view.font = UIFont.boldSystemFont(ofSize: 15)
+        view.font = UIFont(name: "Sk-Modernist-Bold", size: 15)
         
         return view
     }()

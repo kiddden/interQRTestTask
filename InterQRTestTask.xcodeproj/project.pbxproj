@@ -19,6 +19,8 @@
 		8034396029A664E700358706 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8034395F29A664E700358706 /* UIView+Ext.swift */; };
 		8034396429A66C2700358706 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8034396329A66C2700358706 /* Constants.swift */; };
 		80A7B04429A7B4AF0053A0D2 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A7B04329A7B4AF0053A0D2 /* ProgressView.swift */; };
+		80A7B04929A7E05E0053A0D2 /* Sk-Modernist.otf in Resources */ = {isa = PBXBuildFile; fileRef = 80A7B04829A7DE2D0053A0D2 /* Sk-Modernist.otf */; };
+		80A7B04A29A7E0600053A0D2 /* Sk-Modernist-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 80A7B04729A7DE2D0053A0D2 /* Sk-Modernist-Bold.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +37,8 @@
 		8034395F29A664E700358706 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		8034396329A66C2700358706 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		80A7B04329A7B4AF0053A0D2 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
+		80A7B04729A7DE2D0053A0D2 /* Sk-Modernist-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Sk-Modernist-Bold.otf"; sourceTree = "<group>"; };
+		80A7B04829A7DE2D0053A0D2 /* Sk-Modernist.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Sk-Modernist.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +72,7 @@
 		8034393929A6565000358706 /* InterQRTestTask */ = {
 			isa = PBXGroup;
 			children = (
+				80A7B04629A7DE160053A0D2 /* Resources */,
 				8034396229A665DF00358706 /* Utilities */,
 				8034396129A665D500358706 /* Extensions */,
 				8034395329A65B4100358706 /* CustomViews */,
@@ -76,7 +81,6 @@
 				8034394E29A658D000358706 /* Screens */,
 				8034393A29A6565000358706 /* AppDelegate.swift */,
 				8034393C29A6565000358706 /* SceneDelegate.swift */,
-				8034394329A6565100358706 /* Assets.xcassets */,
 				8034394529A6565100358706 /* LaunchScreen.storyboard */,
 				8034394829A6565100358706 /* Info.plist */,
 			);
@@ -148,6 +152,24 @@
 			path = Animations;
 			sourceTree = "<group>";
 		};
+		80A7B04529A7DE060053A0D2 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				80A7B04729A7DE2D0053A0D2 /* Sk-Modernist-Bold.otf */,
+				80A7B04829A7DE2D0053A0D2 /* Sk-Modernist.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		80A7B04629A7DE160053A0D2 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8034394329A6565100358706 /* Assets.xcassets */,
+				80A7B04529A7DE060053A0D2 /* Fonts */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -214,6 +236,8 @@
 			files = (
 				8034394729A6565100358706 /* LaunchScreen.storyboard in Resources */,
 				8034394429A6565100358706 /* Assets.xcassets in Resources */,
+				80A7B04A29A7E0600053A0D2 /* Sk-Modernist-Bold.otf in Resources */,
+				80A7B04929A7E05E0053A0D2 /* Sk-Modernist.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

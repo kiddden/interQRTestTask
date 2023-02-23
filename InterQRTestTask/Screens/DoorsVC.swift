@@ -22,11 +22,9 @@ class DoorsVC: UIViewController {
         return view
     }()
     
-    private let companyNameLabel: UILabel = {
-        let view = UILabel()
-        let attributedText = NSMutableAttributedString(string: "Inter", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 28), NSAttributedString.Key.foregroundColor: Colors.interLabel])
-        attributedText.append(NSAttributedString(string: "QR", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 28), NSAttributedString.Key.foregroundColor: Colors.doorStatusLocked]))
-        view.attributedText = attributedText
+    private let companyNameImage: UIImageView = {
+        let view = UIImageView()
+        view.image = Images.companyName
         
         return view
     }()
@@ -34,7 +32,7 @@ class DoorsVC: UIViewController {
     private let welcomeLabel: UILabel = {
         let view = UILabel()
         view.text = "Welcome"
-        view.font = UIFont.boldSystemFont(ofSize: 35)
+        view.font = UIFont(name: "Sk-Modernist-Bold", size: 35)
         view.textColor = .black
         
         return view
@@ -44,7 +42,7 @@ class DoorsVC: UIViewController {
         var view = UILabel()
         view.text = "My doors"
         view.textColor = Colors.doorName
-        view.font = UIFont.systemFont(ofSize: 20)
+        view.font = UIFont(name: "Sk-Modernist-Bold", size: 20)
         
         return view
     }()
@@ -101,15 +99,20 @@ class DoorsVC: UIViewController {
     // MARK: - Private functions
     
     private func configureVC() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: companyNameLabel)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: companyNameImage)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: settingsButton)
     }
     
     
     private func setupUI() {
         view.backgroundColor = .white
-        view.addSubviews(companyNameLabel, welcomeLabel, settingsButton, housesImage, collectionViewLabel, collectionView)//, tableView)
+        view.addSubviews(welcomeLabel, housesImage, collectionViewLabel, collectionView)//, tableView)
         collectionView.addSubview(progressBar)
+        
+        companyNameImage.snp.makeConstraints { make in
+            make.height.equalTo(17)
+            make.width.equalTo(86)
+        }
         
         welcomeLabel.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(63)

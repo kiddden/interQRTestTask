@@ -9,6 +9,7 @@ import UIKit
 
 enum Images {
     // Door screen
+    static let companyName = UIImage(named: "companyName")
     static let houses = UIImage(named: "houses")
     static let settings = UIImage(named: "gear")
     
