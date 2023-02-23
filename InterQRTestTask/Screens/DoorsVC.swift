@@ -10,6 +10,11 @@ import SnapKit
 
 class DoorsVC: UIViewController {
     
+    private var shouldAnimateCollection = true
+    
+    private let animationDuration: Double = 1.0
+    private let delayBase: Double = 1.0
+    
     private let progressBar: UIActivityIndicatorView = {
         let view = UIActivityIndicatorView(style: .large)
         view.color = Colors.doorStatusLocked
@@ -19,8 +24,8 @@ class DoorsVC: UIViewController {
     
     private let companyNameLabel: UILabel = {
         let view = UILabel()
-        let attributedText = NSMutableAttributedString(string: "Inter", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22), NSAttributedString.Key.foregroundColor: Colors.interLabel])
-        attributedText.append(NSAttributedString(string: "QR", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 22), NSAttributedString.Key.foregroundColor: Colors.doorStatusLocked]))
+        let attributedText = NSMutableAttributedString(string: "Inter", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 28), NSAttributedString.Key.foregroundColor: Colors.interLabel])
+        attributedText.append(NSAttributedString(string: "QR", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 28), NSAttributedString.Key.foregroundColor: Colors.doorStatusLocked]))
         view.attributedText = attributedText
         
         return view
@@ -38,7 +43,7 @@ class DoorsVC: UIViewController {
     private let collectionViewLabel: UILabel = {
         var view = UILabel()
         view.text = "My doors"
-        view.textColor = UIColor(red: 0.196, green: 0.216, blue: 0.333, alpha: 1)
+        view.textColor = Colors.doorName
         view.font = UIFont.systemFont(ofSize: 20)
         
         return view
@@ -61,6 +66,7 @@ class DoorsVC: UIViewController {
     private let housesImage: UIImageView = {
         let view = UIImageView()
         view.image = Images.houses
+        view.contentMode = .scaleAspectFit
         
         return view
     }()
@@ -118,6 +124,9 @@ class DoorsVC: UIViewController {
         housesImage.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.trailing.equalToSuperview()
+            make.width.equalTo(UIScreen.main.bounds.width/2)
+            make.height.equalTo(housesImage.snp.width)
+            
         }
         
         collectionViewLabel.snp.makeConstraints { make in
@@ -135,6 +144,8 @@ class DoorsVC: UIViewController {
         progressBar.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.centerX.equalToSuperview()
+            make.height.equalTo(50)
+            make.width.equalTo(progressBar.snp.height)
         }
     }
     
@@ -144,15 +155,15 @@ class DoorsVC: UIViewController {
             self?.doors = doors
             self?.progressBar.stopAnimating()
             self?.collectionView.reloadData()
+            self?.collectionView.layoutIfNeeded()
         }
     }
     
     private func unlockDoor(at indexPath: IndexPath) {
         if doors[indexPath.row].status == .locked {
-            doors[indexPath.row].status = .unlocking
-            collectionView.reloadItems(at: [indexPath])
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+            self.doors[indexPath.row].status = .unlocking
+            self.collectionView.reloadItems(at: [indexPath])
+            DoorAPIService.shared.unlock(door: doors[indexPath.row]) {
                 self.doors[indexPath.row].status = .unlocked
                 self.collectionView.reloadItems(at: [indexPath])
                 
@@ -211,9 +222,24 @@ extension DoorsVC: UICollectionViewDataSource {
         labelTapGesture.cancelsTouchesInView = false
         cell.statusLabel.isUserInteractionEnabled = true
         cell.statusLabel.addGestureRecognizer(labelTapGesture)
+        cell.contentView.transform = CGAffineTransform(translationX: 0, y: collectionView.bounds.height)
         
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if shouldAnimateCollection {
+            cell.contentView.transform = CGAffineTransform(translationX: 0, y: collectionView.bounds.height)
+            UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.9, options: [], animations: {
+                cell.contentView.transform = .identity
+            }, completion: { _ in
+                self.shouldAnimateCollection = false
+            })
+        } else {
+            cell.contentView.transform = .identity
+        }
+    }
+
 }
 
 extension DoorsVC: UICollectionViewDelegate {

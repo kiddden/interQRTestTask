@@ -18,6 +18,7 @@
 		8034395E29A65F2100358706 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8034395D29A65F2100358706 /* APIService.swift */; };
 		8034396029A664E700358706 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8034395F29A664E700358706 /* UIView+Ext.swift */; };
 		8034396429A66C2700358706 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8034396329A66C2700358706 /* Constants.swift */; };
+		80A7B04429A7B4AF0053A0D2 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A7B04329A7B4AF0053A0D2 /* ProgressView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		8034395D29A65F2100358706 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		8034395F29A664E700358706 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		8034396329A66C2700358706 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		80A7B04329A7B4AF0053A0D2 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 		8034395329A65B4100358706 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				80A7B04229A7B48D0053A0D2 /* Animations */,
 				8034395429A65B4A00358706 /* Cells */,
 			);
 			path = CustomViews;
@@ -135,6 +138,14 @@
 				8034396329A66C2700358706 /* Constants.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		80A7B04229A7B48D0053A0D2 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				80A7B04329A7B4AF0053A0D2 /* ProgressView.swift */,
+			);
+			path = Animations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -221,6 +232,7 @@
 				8034393B29A6565000358706 /* AppDelegate.swift in Sources */,
 				8034393D29A6565000358706 /* SceneDelegate.swift in Sources */,
 				8034396429A66C2700358706 /* Constants.swift in Sources */,
+				80A7B04429A7B4AF0053A0D2 /* ProgressView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

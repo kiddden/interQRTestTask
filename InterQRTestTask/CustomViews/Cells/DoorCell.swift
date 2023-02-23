@@ -10,6 +10,12 @@ import SnapKit
 
 class DoorCell: UICollectionViewCell {
     
+    private let loadingIndicator: ProgressView = {
+        let progress = ProgressView(color: .systemGreen, lineWidth: 2)
+        progress.translatesAutoresizingMaskIntoConstraints = false
+        return progress
+    }()
+    
     private let protectionStatus: UIView = {
         let view = UIView()
         let gradientLayer = CAGradientLayer()
@@ -75,7 +81,7 @@ class DoorCell: UICollectionViewCell {
         contentView.layer.cornerRadius = 15
         contentView.layer.masksToBounds = true
         
-        contentView.addSubviews(protectionStatus, nameLabel, locationLabel, statusLabel, doorStatusImage)
+        contentView.addSubviews(protectionStatus, nameLabel, locationLabel, statusLabel, doorStatusImage, loadingIndicator)
         protectionStatus.addSubview(protectionImage)
 
         protectionStatus.snp.makeConstraints { make in
@@ -88,7 +94,6 @@ class DoorCell: UICollectionViewCell {
         protectionImage.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.centerX.equalToSuperview()
-//            make.height.equalTo(20)
             make.width.equalTo(20)
         }
         
@@ -106,12 +111,21 @@ class DoorCell: UICollectionViewCell {
             make.top.equalToSuperview().offset(18)
             make.trailing.equalToSuperview().offset(-28)
             make.height.equalTo(45)
+            make.width.equalTo(doorStatusImage.snp.height)
         }
         
         statusLabel.snp.makeConstraints { make in
             make.top.equalTo(locationLabel.snp.bottom).offset(27)
             make.centerX.equalToSuperview()
             make.bottom.equalToSuperview().offset(-16)
+        }
+        
+        loadingIndicator.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(28)
+            make.trailing.equalToSuperview().offset(-40)
+            make.height.equalTo(22)
+            make.width.equalTo(loadingIndicator.snp.height)
+            
         }
     }
 
@@ -136,13 +150,16 @@ class DoorCell: UICollectionViewCell {
         }
     }
     
-    private func getDoorStatusImage(for status: DoorStatus) -> UIImage {
+    private func getDoorStatusImage(for status: DoorStatus) -> UIImage? {
         switch status {
         case .locked:
+            DispatchQueue.main.async { self.loadingIndicator.isAnimating = false }
             return Images.doorClosed!
         case .unlocking:
-            return Images.doorUnlocking!
+            DispatchQueue.main.async { self.loadingIndicator.isAnimating = true }
+            return nil
         case .unlocked:
+            DispatchQueue.main.async { self.loadingIndicator.isAnimating = false }
             return Images.doorOpen!
         }
     }

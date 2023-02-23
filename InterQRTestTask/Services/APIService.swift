@@ -14,7 +14,6 @@ class DoorAPIService {
     private init() { }
     
     func getDoorList(completion: @escaping ([Door]) -> Void) {
-        // Simulate API call for 2-3 seconds
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
             let doors = [
                 Door(id: UUID().uuidString, name: "Front door", location: "Home", status: .locked),
@@ -23,6 +22,12 @@ class DoorAPIService {
                 Door(id: UUID().uuidString, name: "Back door", location: "Home", status: .locked)
             ]
             completion(doors)
+        }
+    }
+    
+    func unlock(door: Door, completion: @escaping () -> Void) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+            completion()
         }
     }
 }
