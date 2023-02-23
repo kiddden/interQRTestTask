@@ -22,6 +22,16 @@ enum Images {
 }
 
 enum Colors {
+    // Doors screen
+    static let interLabel = UIColor(named: "interColor")!.cgColor
+    
+    // Door cell
+    static let doorLocation = UIColor(named: "doorLocationColor")!
+    static let doorName = UIColor(named: "doorNameColor")!
+    static let doorStatusLocked = UIColor(named: "doorStatusLabelLockedColor")!
+    static let doorStatusUnlocking = UIColor(named: "doorStatusLabelUnlockingColor")!
+    static let doorStatusUnlocked = UIColor(named: "doorStatusLabelUnlockedColor")!
+    
     static let cellBorder = UIColor(named: "cellBorderColor")!.cgColor
     static let otherGradient = UIColor(named: "otherGradientColor")!.cgColor
     static let safeGradientStart = UIColor(named: "safeGradientStartColor")!.cgColor

@@ -38,20 +38,14 @@ class DoorCell: UICollectionViewCell {
     
     private let nameLabel: UILabel = {
         var view = UILabel()
-//        view.frame = CGRect(x: 0, y: 0, width: 80.76, height: 19)
-        view.backgroundColor = .white
-
-        view.textColor = UIColor(red: 0.196, green: 0.216, blue: 0.333, alpha: 1)
+        view.textColor = Colors.doorName
         view.font = UIFont.boldSystemFont(ofSize: 16)
         
         return view
     }()
     private let locationLabel: UILabel = {
         var view = UILabel()
-//        view.frame = CGRect(x: 0, y: 0, width: 38.8, height: 17)
-        view.backgroundColor = .white
-
-        view.textColor = UIColor(red: 0.725, green: 0.725, blue: 0.725, alpha: 1)
+        view.textColor = Colors.doorLocation
         view.font = UIFont.systemFont(ofSize: 14)
         
         return view
@@ -59,10 +53,7 @@ class DoorCell: UICollectionViewCell {
     
     let statusLabel: UILabel = {
         var view = UILabel()
-//        view.frame = CGRect(x: 0, y: 0, width: 54.54, height: 16.62)
-        view.backgroundColor = .white
-
-        view.textColor = UIColor(red: 0, green: 0.267, blue: 0.545, alpha: 1)
+        view.textColor = Colors.doorStatusLocked
         view.font = UIFont.boldSystemFont(ofSize: 15)
         
         return view
@@ -159,11 +150,11 @@ class DoorCell: UICollectionViewCell {
     private func getStatusColor(for status: DoorStatus) -> UIColor {
         switch status {
         case .locked:
-            return UIColor(red: 0, green: 0.267, blue: 0.545, alpha: 1)
+            return Colors.doorStatusLocked
         case .unlocking:
-            return UIColor(red: 0, green: 0, blue: 0, alpha: 0.17)
+            return Colors.doorStatusUnlocking
         case .unlocked:
-            return UIColor(red: 0, green: 0.267, blue: 0.545, alpha: 0.5)
+            return Colors.doorStatusUnlocked
         }
     }
     

@@ -10,9 +10,18 @@ import SnapKit
 
 class DoorsVC: UIViewController {
     
+    private let progressBar: UIActivityIndicatorView = {
+        let view = UIActivityIndicatorView(style: .large)
+        view.color = Colors.doorStatusLocked
+        
+        return view
+    }()
+    
     private let companyNameLabel: UILabel = {
-        var view = UILabel()
-        view.text = "Inter QR"
+        let view = UILabel()
+        let attributedText = NSMutableAttributedString(string: "Inter", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22), NSAttributedString.Key.foregroundColor: Colors.interLabel])
+        attributedText.append(NSAttributedString(string: "QR", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 22), NSAttributedString.Key.foregroundColor: Colors.doorStatusLocked]))
+        view.attributedText = attributedText
         
         return view
     }()
@@ -21,6 +30,7 @@ class DoorsVC: UIViewController {
         let view = UILabel()
         view.text = "Welcome"
         view.font = UIFont.boldSystemFont(ofSize: 35)
+        view.textColor = .black
         
         return view
     }()
@@ -36,14 +46,20 @@ class DoorsVC: UIViewController {
     
     private let settingsButton: UIButton = {
         let view = UIButton()
-        view.setTitle("Button", for: .normal)
+        view.backgroundColor = .white
+        view.layer.borderWidth = 1
+        view.layer.borderColor = Colors.cellBorder
+        view.layer.cornerRadius = 13
+        view.setImage(Images.settings, for: .normal)
+        view.imageView?.tintColor = .black
+        view.imageView?.contentMode = .scaleAspectFit
+        view.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         
         return view
     }()
     
     private let housesImage: UIImageView = {
         let view = UIImageView()
-//        view.alpha = 0.8
         view.image = Images.houses
         
         return view
@@ -57,7 +73,6 @@ class DoorsVC: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         
-        // Initialize the collection view and set its properties
         let view = UICollectionView(frame: view.bounds, collectionViewLayout: layout)
         view.dataSource = self
         view.delegate = self
@@ -72,32 +87,36 @@ class DoorsVC: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureVC()
         setupUI()
         loadDoorList()
     }
     
     // MARK: - Private functions
+    
+    private func configureVC() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: companyNameLabel)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: settingsButton)
+    }
+    
+    
     private func setupUI() {
         view.backgroundColor = .white
         view.addSubviews(companyNameLabel, welcomeLabel, settingsButton, housesImage, collectionViewLabel, collectionView)//, tableView)
-        
-        companyNameLabel.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(8)
-            make.leading.equalToSuperview().offset(24)
-        }
+        collectionView.addSubview(progressBar)
         
         welcomeLabel.snp.makeConstraints { make in
-            make.top.equalTo(companyNameLabel.snp.bottom).offset(63)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(63)
             make.leading.equalToSuperview().offset(24)
         }
         
         settingsButton.snp.makeConstraints { make in
-            make.centerY.equalTo(companyNameLabel.snp.centerY)
-            make.trailing.equalToSuperview().offset(-27)
+            make.width.equalTo(45)
+            make.height.equalTo(settingsButton.snp.width)
         }
         
         housesImage.snp.makeConstraints { make in
-            make.top.equalTo(settingsButton.snp.bottom)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.trailing.equalToSuperview()
         }
         
@@ -112,11 +131,18 @@ class DoorsVC: UIViewController {
             make.trailing.equalToSuperview().offset(-16)
             make.bottom.equalToSuperview()
         }
+        
+        progressBar.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.centerX.equalToSuperview()
+        }
     }
     
     private func loadDoorList() {
+        self.progressBar.startAnimating()
         DoorAPIService.shared.getDoorList { [weak self] doors in
             self?.doors = doors
+            self?.progressBar.stopAnimating()
             self?.collectionView.reloadData()
         }
     }
@@ -159,10 +185,9 @@ extension DoorsVC: UIGestureRecognizerDelegate {
 
 extension DoorsVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        // Return the size of each cell
         return CGSize(width: collectionView.bounds.width, height: 120)
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 16
     }
@@ -174,7 +199,6 @@ extension DoorsVC: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // Return the number of items you want to display in the collection view
         return doors.count
     }
     
