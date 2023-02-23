@@ -153,23 +153,24 @@ class DoorsVC: UIViewController {
         self.progressBar.startAnimating()
         DoorAPIService.shared.getDoorList { [weak self] doors in
             self?.doors = doors
-            self?.progressBar.stopAnimating()
-            self?.collectionView.reloadData()
-            self?.collectionView.layoutIfNeeded()
+            DispatchQueue.main.async {
+                self?.progressBar.stopAnimating()
+                self?.collectionView.reloadData()
+            }
         }
     }
     
     private func unlockDoor(at indexPath: IndexPath) {
         if doors[indexPath.row].status == .locked {
             self.doors[indexPath.row].status = .unlocking
-            self.collectionView.reloadItems(at: [indexPath])
+            DispatchQueue.main.async { self.collectionView.reloadItems(at: [indexPath]) }
             DoorAPIService.shared.unlock(door: doors[indexPath.row]) {
                 self.doors[indexPath.row].status = .unlocked
-                self.collectionView.reloadItems(at: [indexPath])
+                DispatchQueue.main.async { self.collectionView.reloadItems(at: [indexPath]) }
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
                     self.doors[indexPath.row].status = .locked
-                    self.collectionView.reloadItems(at: [indexPath])
+                    DispatchQueue.main.async {  self.collectionView.reloadItems(at: [indexPath]) }
                 }
             }
         }
@@ -228,7 +229,7 @@ extension DoorsVC: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if shouldAnimateCollection {
+        if shouldAnimateCollection { // To avoid animation when we scroll the collection view, thus it animates only when the VC appears
             cell.contentView.transform = CGAffineTransform(translationX: 0, y: collectionView.bounds.height)
             UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.9, options: [], animations: {
                 cell.contentView.transform = .identity

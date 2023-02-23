@@ -18,4 +18,11 @@ struct Door {
     var name: String // Front door, garage door, etc
     var location: String // Home, office, parents house, etc
     var status: DoorStatus
+    
+    static let moockData = [
+        Door(id: UUID().uuidString, name: "Front door", location: "Home", status: .locked),
+        Door(id: UUID().uuidString, name: "Garage door", location: "Home", status: .locked),
+        Door(id: UUID().uuidString, name: "Front door", location: "Office", status: .locked),
+        Door(id: UUID().uuidString, name: "Back door", location: "Home", status: .locked)
+    ]
 }

@@ -15,13 +15,7 @@ class DoorAPIService {
     
     func getDoorList(completion: @escaping ([Door]) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-            let doors = [
-                Door(id: UUID().uuidString, name: "Front door", location: "Home", status: .locked),
-                Door(id: UUID().uuidString, name: "Garage door", location: "Home", status: .locked),
-                Door(id: UUID().uuidString, name: "Front door", location: "Office", status: .locked),
-                Door(id: UUID().uuidString, name: "Back door", location: "Home", status: .locked)
-            ]
-            completion(doors)
+            completion(Door.moockData)
         }
     }
     
